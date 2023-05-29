@@ -1,0 +1,32 @@
+.contact-filter {
+  color: white;
+  padding: 0 1rem;
+  margin-bottom: 2rem;
+}
+
+.contact-filter__control {
+  display: flex;
+  flex-direction: column;
+
+  margin: 1rem 0;
+}
+@media (min-width: 650px) {
+  .contact-filter__control {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.contact-filter label {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.contact-filter input {
+  font: inherit;
+  padding: 0.5rem 3rem;
+  font-weight: bold;
+  border-radius: 6px;
+}
