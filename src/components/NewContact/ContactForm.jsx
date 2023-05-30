@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './ContactForm.module.css';
 
 function ContactForm(props) {
-  const { onAddContact } = props;
+  const { onAddContact, onCancel } = props;
 
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
@@ -29,7 +29,7 @@ function ContactForm(props) {
   };
 
   return (
-    <form className={styles['contact-form']} onSubmit={onSubmitHandler}>
+    <form onSubmit={onSubmitHandler}>
       <div className={styles['contact-form__controls']}>
         <div className={styles['contact-form__control']}>
           <label htmlFor="name">Name</label>
@@ -58,7 +58,12 @@ function ContactForm(props) {
           />
         </div>
       </div>
-      <button type="submit">Add New Contact</button>
+      <div className={styles['contact-form__actions']}>
+        <button type="submit">Add</button>
+        <button onClick={onCancel} type="button">
+          Cancel
+        </button>
+      </div>
     </form>
   );
 }

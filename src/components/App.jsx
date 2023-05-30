@@ -1,48 +1,69 @@
 import React, { useState } from 'react';
 import ContactForm from './NewContact/ContactForm';
 import Contacts from './Contacts/Contacts';
+import AddNewContact from './NewContact/AddNewContact';
 
 export const App = () => {
   const initialContacts = [
     {
+      id: '0.020094273215832233',
+      name: 'Fernando Santos',
+      number: '+351 123 456 789',
+    },
+    {
+      id: '0.020094273215832234',
+      name: 'Joe Biden',
+      number: '+1 888 888 888',
+    },
+    {
+      id: '0.020094273215832235',
+      name: 'Lucy Hot',
+      number: '+1 69 69 69 69',
+    },
+    {
+      id: '0.020094273215832236',
+      name: 'Vladimir Putin',
+      number: '+7 *** *** ***',
+    },
+    {
       id: '0.020094273215832237',
       name: 'Donald Trump',
-      number: '+1-777-777-777',
+      number: '+1 777 777 777',
     },
     {
       id: '0.020094273215832238',
       name: 'Donald Tusk',
-      number: '+48-666-999-999',
+      number: '+48 666 999 999',
     },
     {
       id: '0.020094273215832239',
       name: 'Andrzej Duda',
-      number: '+48-999-999-997',
+      number: '+48 999 999 997',
     },
     {
       id: '0.020094273215832240',
       name: 'Mateusz Morawiecki',
-      number: '+48-999-999-998',
+      number: '+48 999 999 998',
     },
     {
       id: '0.020094273215832241',
       name: 'Jarosław Kaczyński',
-      number: '+48-999-999-999',
+      number: '+48 999 999 999',
     },
     {
       id: '0.020094273215832242',
       name: 'Emanuel Macron',
-      number: '+33-000-000-000',
+      number: '+33 000 000 000',
     },
     {
       id: '0.020094273215832243',
       name: 'Olaf Scholz',
-      number: '+49-111-111-111',
+      number: '+49 111 111 111',
     },
     {
       id: '0.020094273215832244',
       name: 'Klaudia Jachira',
-      number: '+48-123-123-123',
+      number: '+48 123 123 123',
     },
   ];
 
@@ -72,17 +93,10 @@ export const App = () => {
   };
 
   return (
-    <div
-      style={
-        {
-          // fontSize: '30',
-          // color: '#010101',
-        }
-      }
-    >
+    <div>
       <div className="phonebook">
         <h4>My Phonebook</h4>
-        <ContactForm onAddContact={addContactHandler} />
+        <AddNewContact onAddContact={addContactHandler} />
         <Contacts
           title="Contacts"
           contacts={contacts}

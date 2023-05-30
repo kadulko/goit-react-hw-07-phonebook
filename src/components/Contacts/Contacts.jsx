@@ -20,7 +20,7 @@ function Contacts(props) {
         <span className={styles.counter}>Total: {contacts.length} </span>{' '}
         {filter && (
           <span className={styles.counter}>
-            Found: {filteredContacts.length}
+            | Found: {filteredContacts.length}
           </span>
         )}
       </h4>
@@ -30,7 +30,7 @@ function Contacts(props) {
         (filteredContacts.length > 0 ? (
           <ContactList contacts={filteredContacts} onDelete={onDelete} />
         ) : (
-          <p>No contacts mathcing this name</p>
+          <p className={styles.message}>No matching contacts found</p>
         ))}
     </div>
   );

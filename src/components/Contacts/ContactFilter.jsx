@@ -11,10 +11,10 @@ function ContactFilter(props) {
   return (
     <div className={styles['contact-filter']}>
       <div className={styles['contact-filter__control']}>
-        <label htmlFor="contactFilter">Search contacts by name</label>
+        <label htmlFor="contactFilter">Search by name</label>
         <input
           onChange={filterChangeHandler}
-          type="text"
+          type="search"
           id="name"
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
