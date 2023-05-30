@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ContactForm from './NewContact/ContactForm';
 import Contacts from './Contacts/Contacts';
 import AddNewContact from './NewContact/AddNewContact';
 
