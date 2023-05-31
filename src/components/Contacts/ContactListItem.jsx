@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import styles from './ContactListItem.module.css';
 
 function ContactListItem(props) {
-  const { id, name, number, onDelete } = props;
+  const { id, name, number, onDeleteContact } = props;
 
   const onClickHandler = event => {
-    console.log('Delete in ContactListItem', event);
-    onDelete(event.target.dataset.id);
+    onDeleteContact(event.target.dataset.id);
   };
 
   return (

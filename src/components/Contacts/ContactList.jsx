@@ -4,7 +4,7 @@ import ContactListItem from './ContactListItem';
 import styles from './ContactList.module.css';
 
 function ContactList(props) {
-  const { contacts, onDelete } = props;
+  const { contacts, onDeleteContact } = props;
   return (
     <ul className={styles['contact-list']}>
       {' '}
@@ -14,7 +14,7 @@ function ContactList(props) {
           id={id}
           name={name}
           number={number}
-          onDelete={onDelete}
+          onDeleteContact={onDeleteContact}
         />
       ))}
     </ul>
@@ -23,7 +23,7 @@ function ContactList(props) {
 
 ContactList.propTypes = {
   contacts: PropTypes.array,
-  onDelete: PropTypes.func,
+  onDeleteContacts: PropTypes.func,
 };
 
 export default ContactList;

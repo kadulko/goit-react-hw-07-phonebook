@@ -5,7 +5,7 @@ import ContactForm from './ContactForm';
 import styles from './AddNewContact.module.css';
 
 function AddNewContact(props) {
-  const { onAddContact } = props;
+  const { contacts, onAddContact } = props;
 
   const [showContactForm, setShowContactForm] = useState(false);
 
@@ -31,6 +31,7 @@ function AddNewContact(props) {
       )}
       {showContactForm && (
         <ContactForm
+          contacts={contacts}
           onAddContact={addContactDataHandler}
           onCancel={toggleShowContactForm}
         />
@@ -39,6 +40,9 @@ function AddNewContact(props) {
   );
 }
 
-AddNewContact.propTypes = { onAddContact: PropTypes.func };
+AddNewContact.propTypes = {
+  contacts: PropTypes.array.isRequired,
+  onAddContact: PropTypes.func,
+};
 
 export default AddNewContact;

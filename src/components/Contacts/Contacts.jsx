@@ -5,14 +5,11 @@ import ContactFilter from './ContactFilter';
 import styles from './Contacts.module.css';
 
 function Contacts(props) {
-  const {
-    title,
-    contacts,
-    filteredContacts,
-    filter,
-    onFilterChange,
-    onDelete,
-  } = props;
+  const { title, contacts, filter, onFilterChange, onDeleteContact } = props;
+
+  let filteredContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
   return (
     <div className={styles.contacts}>
       <h4>
@@ -25,12 +22,17 @@ function Contacts(props) {
         )}
       </h4>
       <ContactFilter onFilterChange={onFilterChange} />
-      {!filter && <ContactList contacts={contacts} onDelete={onDelete} />}
+      {!filter && (
+        <ContactList contacts={contacts} onDeleteContact={onDeleteContact} />
+      )}
       {filter &&
         (filteredContacts.length > 0 ? (
-          <ContactList contacts={filteredContacts} onDelete={onDelete} />
+          <ContactList
+            contacts={filteredContacts}
+            onDeleteContact={onDeleteContact}
+          />
         ) : (
-          <p className={styles.message}>No matching contacts found</p>
+          <p className={styles.message}>No matching contacts</p>
         ))}
     </div>
   );
@@ -39,10 +41,9 @@ function Contacts(props) {
 Contacts.propTypes = {
   title: PropTypes.string,
   contacts: PropTypes.array.isRequired,
-  filteredContacts: PropTypes.array.isRequired,
   filter: PropTypes.string.isRequired,
   onFilterChange: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired,
+  onDeleteContact: PropTypes.func.isRequired,
 };
 
 export default Contacts;

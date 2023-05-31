@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './ContactForm.module.css';
 
 function ContactForm(props) {
-  const { onAddContact, onCancel } = props;
+  const { contacts, onAddContact, onCancel } = props;
 
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
@@ -22,10 +22,18 @@ function ContactForm(props) {
       name: name,
       number: number,
     };
-    console.log(newContact);
-    onAddContact(newContact);
-    setName('');
-    setNumber('');
+
+    if (
+      contacts
+        .map(({ name }) => name.toLowerCase())
+        .indexOf(newContact.name.toLowerCase()) === -1
+    ) {
+      onAddContact(newContact);
+      setName('');
+      setNumber('');
+    } else {
+      alert('Contact already exists!');
+    }
   };
 
   return (
@@ -68,6 +76,10 @@ function ContactForm(props) {
   );
 }
 
-ContactForm.propTypes = { onAddContact: PropTypes.func.isRequired };
+ContactForm.propTypes = {
+  contacts: PropTypes.array.isRequired,
+  onAddContact: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
+};
 
 export default ContactForm;

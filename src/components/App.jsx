@@ -3,7 +3,7 @@ import Contacts from './Contacts/Contacts';
 import AddNewContact from './NewContact/AddNewContact';
 
 export const App = () => {
-  const initialContacts = [
+  const DUMMY_CONTACTS = [
     {
       id: '0.020094273215832233',
       name: 'Fernando Santos',
@@ -66,12 +66,8 @@ export const App = () => {
     },
   ];
 
-  const [contacts, setContacts] = useState([...initialContacts]);
+  const [contacts, setContacts] = useState([...DUMMY_CONTACTS]);
   const [filter, setFilter] = useState('');
-
-  let filteredContacts = contacts.filter(contact =>
-    contact.name.includes(filter)
-  );
 
   const addContactHandler = contact => {
     setContacts(oldContacts => [contact, ...oldContacts]);
@@ -83,27 +79,18 @@ export const App = () => {
     ]);
   };
 
-  const updateFilterHandler = filter => {
-    filteredContacts = contacts.filter(contact =>
-      contact.name.includes(filter)
-    );
-    setFilter(filter);
-    console.log(filter);
-  };
-
   return (
     <div>
       <div className="phonebook">
         <h4>My Phonebook</h4>
-        <AddNewContact onAddContact={addContactHandler} />
+        <AddNewContact contacts={contacts} onAddContact={addContactHandler} />
         <Contacts
           title="Contacts"
           contacts={contacts}
           filter={filter}
-          filteredContacts={filteredContacts}
           onAddContact={addContactHandler}
-          onDelete={deleteContactHandler}
-          onFilterChange={updateFilterHandler}
+          onDeleteContact={deleteContactHandler}
+          onFilterChange={setFilter}
         />
       </div>
     </div>
