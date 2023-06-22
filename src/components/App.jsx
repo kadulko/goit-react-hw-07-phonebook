@@ -3,6 +3,8 @@ import Contacts from './Contacts/Contacts';
 import AddNewContact from './NewContact/AddNewContact';
 import ls from 'services/storage';
 
+//
+
 export const App = () => {
   const savedContacts = ls.load('contacts');
   const [contacts, setContacts] = useState(
