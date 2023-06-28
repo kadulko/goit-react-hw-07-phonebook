@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Contacts from './Contacts/Contacts';
-import AddNewContact from './NewContact/AddNewContact';
+import Contacts from './Contacts/Contacts/Contacts';
+import AddNewContact from './NewContact/AddNewContact/AddNewContact';
 import ls from 'services/storage';
 
 export const App = () => {
-  const savedContacts = ls.load('contacts');
-  const [contacts, setContacts] = useState(
-    savedContacts ? [...savedContacts] : []
-  );
+  const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState('');
 
   const addContactHandler = contact => {
@@ -21,7 +18,12 @@ export const App = () => {
   };
 
   useEffect(() => {
-    ls.save('contacts', contacts);
+    const savedContacts = ls.load('contacts');
+    if (savedContacts) setContacts([...savedContacts]);
+  }, []);
+
+  useEffect(() => {
+    contacts.length ? ls.save('contacts', contacts) : ls.remove('contacts');
   }, [contacts]);
 
   return (

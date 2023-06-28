@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ContactList from './ContactList';
-import ContactFilter from './ContactFilter';
+import ContactList from '../ContactList/ContactList';
+import ContactFilter from '../ContactFilter/ContactFilter';
 import styles from './Contacts.module.css';
 
 function Contacts(props) {
