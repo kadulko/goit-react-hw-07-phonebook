@@ -1,12 +1,15 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteContact } from 'redux/contactsSlice';
 import PropTypes from 'prop-types';
 import styles from './ContactListItem.module.css';
 
 function ContactListItem(props) {
-  const { id, name, number, onDeleteContact } = props;
+  const { id, name, number } = props;
+  const dispatch = useDispatch();
 
   const onClickHandler = event => {
-    onDeleteContact(event.target.dataset.id);
+    dispatch(deleteContact(event.target.dataset.id));
   };
 
   return (
@@ -23,9 +26,9 @@ function ContactListItem(props) {
 }
 
 ContactListItem.propTypes = {
+  id: PropTypes.string,
   name: PropTypes.string,
   number: PropTypes.string,
-  onDelete: PropTypes.func,
 };
 
 export default ContactListItem;

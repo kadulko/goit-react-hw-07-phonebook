@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { getContacts } from 'redux/selectors';
+import { nanoid } from '@reduxjs/toolkit';
 import PropTypes from 'prop-types';
 import styles from './ContactForm.module.css';
+import { addContact } from 'redux/contactsSlice';
 
 function ContactForm(props) {
-  const { contacts, onAddContact, onCancel } = props;
+  const { onClose } = props;
+  const contacts = useSelector(getContacts);
+  const dispatch = useDispatch();
 
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
@@ -18,9 +25,9 @@ function ContactForm(props) {
   const onSubmitHandler = event => {
     event.preventDefault();
     const newContact = {
-      id: Math.random().toString(),
       name: name,
       number: number,
+      id: nanoid(),
     };
 
     if (
@@ -28,9 +35,10 @@ function ContactForm(props) {
         .map(({ name }) => name.toLowerCase())
         .indexOf(newContact.name.toLowerCase()) === -1
     ) {
-      onAddContact(newContact);
+      dispatch(addContact(newContact));
       setName('');
       setNumber('');
+      onClose();
     } else {
       alert('Contact already exists!');
     }
@@ -68,7 +76,7 @@ function ContactForm(props) {
       </div>
       <div className={styles['contact-form__actions']}>
         <button type="submit">Add</button>
-        <button onClick={onCancel} type="button">
+        <button onClick={onClose} type="button">
           Cancel
         </button>
       </div>
@@ -77,9 +85,7 @@ function ContactForm(props) {
 }
 
 ContactForm.propTypes = {
-  contacts: PropTypes.array.isRequired,
-  onAddContact: PropTypes.func.isRequired,
-  onCancel: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 export default ContactForm;

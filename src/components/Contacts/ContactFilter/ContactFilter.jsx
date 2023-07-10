@@ -1,12 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { setFilter } from 'redux/filterSlice';
 import styles from './ContactFilter.module.css';
 
-function ContactFilter(props) {
-  const { onFilterChange } = props;
+function ContactFilter() {
+  const dispatch = useDispatch();
 
   const filterChangeHandler = event => {
-    onFilterChange(event.target.value);
+    console.log(event.target.value);
+    dispatch(setFilter(event.target.value));
   };
   return (
     <div className={styles['contact-filter']}>
@@ -25,7 +27,5 @@ function ContactFilter(props) {
     </div>
   );
 }
-
-ContactFilter.propTypes = { onFilterChange: PropTypes.func };
 
 export default ContactFilter;

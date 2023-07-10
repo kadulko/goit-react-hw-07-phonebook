@@ -1,25 +1,13 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import ContactForm from '../ContactForm/ContactForm';
 
 import styles from './AddNewContact.module.css';
 
-function AddNewContact(props) {
-  const { contacts, onAddContact } = props;
-
+function AddNewContact() {
   const [showContactForm, setShowContactForm] = useState(false);
 
   const toggleShowContactForm = () => {
     setShowContactForm(oldState => !oldState);
-  };
-
-  const addContactDataHandler = enteredContactData => {
-    const contactData = {
-      ...enteredContactData,
-      id: Math.random().toString(),
-    };
-    onAddContact(contactData);
-    toggleShowContactForm();
   };
 
   return (
@@ -29,20 +17,9 @@ function AddNewContact(props) {
           Add New Contact
         </button>
       )}
-      {showContactForm && (
-        <ContactForm
-          contacts={contacts}
-          onAddContact={addContactDataHandler}
-          onCancel={toggleShowContactForm}
-        />
-      )}
+      {showContactForm && <ContactForm onClose={toggleShowContactForm} />}
     </div>
   );
 }
-
-AddNewContact.propTypes = {
-  contacts: PropTypes.array.isRequired,
-  onAddContact: PropTypes.func,
-};
 
 export default AddNewContact;
