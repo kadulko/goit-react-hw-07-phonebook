@@ -7,7 +7,6 @@ function ContactFilter() {
   const dispatch = useDispatch();
 
   const filterChangeHandler = event => {
-    console.log(event.target.value);
     dispatch(setFilter(event.target.value));
   };
   return (

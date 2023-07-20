@@ -7,8 +7,8 @@ function ContactList(props) {
 
   return (
     <ul className={styles['contact-list']}>
-      {contacts.map(({ id, name, number }) => (
-        <ContactListItem key={id} id={id} name={name} number={number} />
+      {contacts.map(contact => (
+        <ContactListItem key={contact.id} contact={contact} />
       ))}
     </ul>
   );

@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { getContacts } from 'redux/selectors';
-import { nanoid } from '@reduxjs/toolkit';
 import PropTypes from 'prop-types';
 import styles from './ContactForm.module.css';
-import { addContact } from 'redux/contactsSlice';
+import { addContact } from 'redux/operations';
 
 function ContactForm(props) {
   const { onClose } = props;
@@ -25,9 +24,8 @@ function ContactForm(props) {
   const onSubmitHandler = event => {
     event.preventDefault();
     const newContact = {
-      name: name,
-      number: number,
-      id: nanoid(),
+      name,
+      number,
     };
 
     if (

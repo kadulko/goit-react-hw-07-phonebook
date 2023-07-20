@@ -1,8 +1,12 @@
-import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { getContacts, getContactFilter } from 'redux/selectors';
-import ls from 'services/storage';
+import {
+  getContacts,
+  getContactFilter,
+  getIsLoading,
+  getError,
+} from 'redux/selectors';
+
 import ContactList from '../ContactList/ContactList';
 import ContactFilter from '../ContactFilter/ContactFilter';
 import styles from './Contacts.module.css';
@@ -12,16 +16,12 @@ function Contacts(props) {
 
   const contacts = useSelector(getContacts);
   const filter = useSelector(getContactFilter);
+  const isLoading = useSelector(getIsLoading);
+  const error = useSelector(getError);
 
   let filteredContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
-
-  useEffect(() => {
-    if (contacts.length > 0) {
-      ls.save('contacts', contacts);
-    } else ls.remove('contacts');
-  });
 
   return (
     <div className={styles.contacts}>
@@ -35,6 +35,8 @@ function Contacts(props) {
         )}
       </h4>
       <ContactFilter />
+      {isLoading && <p className={styles.message}>Processing request...</p>}
+      {error && <p>{error.message}</p>}
       {!filter && <ContactList contacts={contacts} />}
       {filter &&
         (filteredContacts.length > 0 ? (
