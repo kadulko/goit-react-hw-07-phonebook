@@ -25,7 +25,7 @@ function ContactForm(props) {
     event.preventDefault();
     const newContact = {
       name,
-      number,
+      phone: number,
     };
 
     if (
